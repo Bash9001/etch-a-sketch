@@ -4,6 +4,17 @@ const DEFAULT_SIZE = 20
 let currentColour = DEFAULT_COLOUR
 let currentSize = DEFAULT_SIZE
 
+const colourSelector = document.getElementById('colourSelector')
+const clear = document.getElementById('clearBtn')
+const sizeValue = document.getElementById('sizeValue')
+const sizeSlider = document.getElementById('sizeSlider')
+const grid = document.getElementById('grid')
+
+colourSelector.oninput = (e) => setCurrentColour(e.target.value)
+clear.onclick = () => reloadGrid()
+sizeSlider.onmousemove = (e) => updateDisplaySize(e.target.value)
+sizeSlider.onchange = (e) => updateGridSize(e.target.value)
+
 function setCurrentColour(newColour) {
     currentColour = newColour
 }
@@ -11,17 +22,6 @@ function setCurrentColour(newColour) {
 function setCurrentSize(newSize) {
     currentSize = newSize
 }
-
-const colourSlider = document.getElementById('colourSlider')
-const clear = document.getElementById('clearBtn')
-const sizeValue = document.getElementById('sizeValue')
-const sizeSlider = document.getElementById('sizeSlider')
-const grid = document.getElementById('grid')
-
-colourSlider.oninput = (e) => setCurrentColour(e.target.value)
-clear.onclick = () => reloadGrid()
-sizeSlider.onmousemove = (e) => updateDisplaySize(e.target.value)
-sizeSlider.onchange = (e) => updateGridSize(e.target.value)
 
 function updateGridSize(newSize) {
     setCurrentSize(newSize)
@@ -57,7 +57,7 @@ function createGrid(size) {
 
 function changeColour(e) {
     if (e.type === 'mouseover' && 'mousedown') {
-        e.style.backgroundColor = currentColour
+        e.target.style.backgroundColor = currentColour
     }
 }
 
